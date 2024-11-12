@@ -11,9 +11,13 @@ contract PostNft is ERC721URIStorage, Ownable {
         counter = 0;
     }
 
-    function mint(address to, string memory tokenURI) public onlyOwner {
+    function mint(address to, string memory tokenURI) external onlyOwner {
         _safeMint(to, counter);
         _setTokenURI(counter, tokenURI); // Store metadata URL
         counter++;
+    }
+
+    function getTokenId() public view returns (uint256) {
+        return counter;
     }
 }
